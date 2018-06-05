@@ -1,6 +1,24 @@
 # vrchat-friend-manager
 
-> An electron-vue project
+### Todo
+
+- [x] Login
+- [x] View online friend
+- [x] View friend location
+- [ ] View friend location's instance [publice , invite or private]
+- [ ] Find user
+- [ ] Add/Delete Friend
+- [ ] Accept/Ignore Friend request
+- [ ] Joining friend
+- [ ] List user's avatar
+- [ ] Choose avatar
+- [ ] Delete avatar
+- [ ] Auto update
+- [ ] List world
+
+___
+
+> VRChat friend manager is an electron-vue project
 
 #### Build Setup
 
