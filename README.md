@@ -2,9 +2,9 @@
 
 ### Todo
 
-- [x] Login
-- [x] View online friend
-- [x] View friend location
+- [x] ~~Login~~
+- [x] ~~View online friend~~
+- [x] ~~View friend location~~
 - [ ] View friend location's instance [publice , invite or private]
 - [ ] Find user
 - [ ] Add/Delete Friend
