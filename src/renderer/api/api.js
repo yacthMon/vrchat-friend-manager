@@ -65,12 +65,12 @@ class API {
         if (res.data) {
           for (let friend of res.data) {
             if (friend.location !== 'offline') {
-              this.getLocationDetailOfFriend(friend.location).then(({ worldName, tag }) => {
+              this.getLocationDetailOfFriend(friend.location).then(({ worldName, locationTag }) => {
                 result.push({
                   displayName: friend.displayName,
                   currentAvatarImageUrl: friend.currentAvatarThumbnailImageUrl,
                   worldName,
-                  tag
+                  locationTag
                 })
                 result = result.sort((a, b) => {
                   if (a.displayName.charAt(0) < b.displayName.charAt(0)) return -1
