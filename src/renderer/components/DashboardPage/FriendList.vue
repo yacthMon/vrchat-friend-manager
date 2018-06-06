@@ -12,10 +12,12 @@
           <img class="mr-3 border border-dark" :src=friend.currentAvatarImageUrl style='width:120px; height:80px'>
           <div class="media-body"> 
             <div class="row" style="margin-left: 0px; margin-right: 0px;">
-              <div>
+              <div class="col-6"  style="padding-left: 0px;">
                 <h5 class="mt-0">{{friend.displayName}}</h5>
-                In world : {{friend.worldName}}<br>
-                <div class="row">
+                <span class="world-name">
+                In world : {{friend.worldName}}
+                </span>
+                <div class="row" >
                   <span class="col align-self-start">
                     <span class="badge badge-pill badge-primary" data-toggle="tooltip" :title=friend.locationTag.description v-if="friend.locationTag.type=='Public'">{{friend.locationTag.type}}</span>
                     <span class="badge badge-pill badge-success" data-toggle="tooltip" :title=friend.locationTag.description v-if="friend.locationTag.type=='Friends+'">{{friend.locationTag.type}}</span>
@@ -106,6 +108,13 @@ export default {
 .item .value {
   color: #35495e;
   font-weight: bold;
+}
+
+.world-name {
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  white-space: nowrap;
+  width: 160px; 
 }
 
 .list {
