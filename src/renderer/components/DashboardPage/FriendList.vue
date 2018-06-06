@@ -5,24 +5,26 @@
     <button type="button" class="btn btn-default btn-info" aria-label="Left Align" @click="refreshFriendList()">
       <span class="glyphicon glyphicon-refresh" aria-hidden="true">refresh</span>
     </button></h4>
-    <!-- <ol id="friendlist" style="list-style-type: none;height:400px; width:500px; overflow-y: auto;"> -->
     <transition-group name="list" tag="ul" class="list" >
       <li v-for="(friend,i) in friends" v-bind:key="i">
         <div class="media">
           <img class="mr-3 border border-dark" :src=friend.currentAvatarImageUrl style='width:120px; height:80px'>
           <div class="media-body">
             <h5 class="mt-0">{{friend.displayName}}</h5>
-            In world : {{friend.worldName}}
+            In world : {{friend.worldName}}<br>
+            <span class="badge badge-pill badge-primary" v-if="friend.tag.type=='Public'">{{friend.tag.type}}</span>
+            <span class="badge badge-pill badge-success" v-if="friend.tag.type=='Friends+'">{{friend.tag.type}}</span>
+            <span class="badge badge-pill badge-info" v-if="friend.tag.type=='Friends'">{{friend.tag.type}}</span>
+            <span class="badge badge-pill badge-warning" v-if="friend.tag.type=='Invite'">{{friend.tag.type}}</span>
+            <!-- {{friend.tag ? friend.tag.type : "undefined"}} : {{friend.tag ? friend.tag.description : "undefined"}} -->
           </div>
         </div>
       </li>
     </transition-group>
-    <!-- </ol> -->
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'friend-list',
   props: {
@@ -30,6 +32,15 @@ export default {
       type: Object,
       default: () => ({})
     }
+  },
+  mounted: () => {
+    // not worked :\
+    // console.log(this.getAPI)
+    // this.getAPI().api.getFriend().then(friends => {
+    //   this.friends = friends
+    //   console.log(friends[0])
+    //   this.onlineFriend = friends.length
+    // })
   },
   data () {
     return {

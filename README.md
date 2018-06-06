@@ -5,7 +5,7 @@
 - [x] ~~Login~~
 - [x] ~~View online friend~~
 - [x] ~~View friend location~~
-- [ ] View friend location's instance [publice , invite or private]
+- [x] ~~View friend location's instance [publice , invite or private]~~
 - [ ] Find user
 - [ ] Add/Delete Friend
 - [ ] Accept/Ignore Friend request
