@@ -17,10 +17,10 @@
                 In world : {{friend.worldName}}<br>
                 <div class="row">
                   <span class="col align-self-start">
-                    <span class="badge badge-pill badge-primary" v-if="friend.locationTag.type=='Public'">{{friend.locationTag.type}}</span>
-                    <span class="badge badge-pill badge-success" v-if="friend.locationTag.type=='Friends+'">{{friend.locationTag.type}}</span>
-                    <span class="badge badge-pill badge-info" v-if="friend.locationTag.type=='Friends'">{{friend.locationTag.type}}</span>
-                    <span class="badge badge-pill badge-warning" v-if="friend.locationTag.type=='Invite'">{{friend.locationTag.type}}</span>
+                    <span class="badge badge-pill badge-primary" data-toggle="tooltip" :title=friend.locationTag.description v-if="friend.locationTag.type=='Public'">{{friend.locationTag.type}}</span>
+                    <span class="badge badge-pill badge-success" data-toggle="tooltip" :title=friend.locationTag.description v-if="friend.locationTag.type=='Friends+'">{{friend.locationTag.type}}</span>
+                    <span class="badge badge-pill badge-info" data-toggle="tooltip" :title=friend.locationTag.description v-if="friend.locationTag.type=='Friends'">{{friend.locationTag.type}}</span>
+                    <span class="badge badge-pill badge-warning" data-toggle="tooltip" :title=friend.locationTag.description v-if="friend.locationTag.type=='Invite'">{{friend.locationTag.type}}</span>
                   </span>
                 </div>
               </div>
