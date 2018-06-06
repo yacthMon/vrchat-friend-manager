@@ -31,8 +31,7 @@
     name: 'dashboard-page',
     data: () => {
       return {
-        user: this.api,
-        friends: null
+        user: this.api
       }
     },
     components: { FriendList },
@@ -46,30 +45,11 @@
       ])
     },
     mounted: () => {
-      // not worked :\
-      // console.log(this.getAPI)
-      // this.getAPI().api.getFriend().then(friends => {
-      //   this.friends = friends
-      //   console.log(friends[0])
-      //   this.onlineFriend = friends.length
-      // })
     },
     methods: {
-      getOnlineFriend () {
-        if (!this.friends) {
-          this.api.api.getFriend().then(friends => {
-            this.friends = friends
-          })
-        }
-      },
       logout () {
         this.$store.dispatch('setAPI', {api: null})
         this.$router.push({name: 'login-page'})
-      },
-      refreshFriendList () {
-        this.api.api.getFriend().then(friends => {
-          this.friends = friends
-        })
       }
     }
   }
