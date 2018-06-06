@@ -69,6 +69,7 @@ class API {
                 result.push({
                   displayName: friend.displayName,
                   currentAvatarImageUrl: friend.currentAvatarThumbnailImageUrl,
+                  location: friend.location,
                   worldName,
                   locationTag
                 })
