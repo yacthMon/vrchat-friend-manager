@@ -1,6 +1,12 @@
 const axios = require('axios')
 const apiPath = 'https://api.vrchat.cloud/api/1'
 const apiKey = 'JlE5Jldo5Jibnk5O5hTx6XVqsJu4WJ26'
+const tagData = {
+  public: {type: 'Public', description: 'Public room'},
+  hidden: {type: 'Friends+', description: 'Friends of Guests'},
+  friends: {type: 'Friends', description: 'Friends only'},
+  private: {type: 'Invite', description: 'Invite  Only'}
+}
 
 class API {
   constructor () {
@@ -59,11 +65,12 @@ class API {
         if (res.data) {
           for (let friend of res.data) {
             if (friend.location !== 'offline') {
-              this.getWorldNameOfFriend(friend.location).then(worldName => {
+              this.getLocationDetailOfFriend(friend.location).then(({ worldName, tag }) => {
                 result.push({
                   displayName: friend.displayName,
                   currentAvatarImageUrl: friend.currentAvatarThumbnailImageUrl,
-                  worldName: worldName
+                  worldName,
+                  tag
                 })
                 result = result.sort((a, b) => {
                   if (a.displayName.charAt(0) < b.displayName.charAt(0)) return -1
@@ -83,18 +90,28 @@ class API {
     })
   }
 
-  getWorldNameOfFriend (worldId) {
+  getLocationDetailOfFriend (location) {
     return new Promise(async (resolve, reject) => {
-      if (worldId === 'private') return resolve('private')
-      worldId = worldId.substring(0, worldId.indexOf(':', 0))
-      console.log(worldId)
+      let tag = location.substring(location.indexOf('~', 0) + 1, location.indexOf('(', 0))
+      let worldId = location.substring(0, location.indexOf(':', 0))
+      tag = tag.length === 0 ? 'public' : tag
+      if (location === 'private') {
+        return resolve({worldName: 'private', tag: tagData.private})
+      }
       axios.get(`${apiPath}/worlds/${worldId}`, {
         params: {
           apiKey: apiKey,
           authToken: this.authToken
         }
       }).then(res => {
-        res.data.name ? resolve(res.data.name) : reject(new Error('World no name'))
+        if (res.data) {
+          resolve({
+            worldName: res.data.name,
+            tag: tagData[tag]
+          })
+        } else {
+          reject(new Error('World no name'))
+        }
       })
     })
   }
