@@ -86,7 +86,7 @@ class API {
           reject(new Error('[getFriend] Something wrong with response data.'))
         }
       }).catch(err => {
-        console.error(err.response)
+        reject(err)
       })
     })
   }
