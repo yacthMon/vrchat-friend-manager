@@ -86,7 +86,8 @@ class API {
   getWorldNameOfFriend (worldId) {
     return new Promise(async (resolve, reject) => {
       if (worldId === 'private') return resolve('private')
-      worldId = worldId.substring(0, 41)
+      worldId = worldId.substring(0, worldId.indexOf(':', 0))
+      console.log(worldId)
       axios.get(`${apiPath}/worlds/${worldId}`, {
         params: {
           apiKey: apiKey,
