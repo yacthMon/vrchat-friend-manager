@@ -1,7 +1,7 @@
 const axios = require('axios')
 const apiPath = 'https://api.vrchat.cloud/api/1'
 const apiKey = 'JlE5Jldo5Jibnk5O5hTx6XVqsJu4WJ26'
-const tagData = {
+const locationTagData = {
   public: {type: 'Public', description: 'Public room'},
   hidden: {type: 'Friends+', description: 'Friends of Guests'},
   friends: {type: 'Friends', description: 'Friends only'},
@@ -96,7 +96,7 @@ class API {
       let worldId = location.substring(0, location.indexOf(':', 0))
       tag = tag.length === 0 ? 'public' : tag
       if (location === 'private') {
-        return resolve({worldName: 'private', tag: tagData.private})
+        return resolve({worldName: 'private', locationTag: locationTagData.private})
       }
       axios.get(`${apiPath}/worlds/${worldId}`, {
         params: {
@@ -107,7 +107,7 @@ class API {
         if (res.data) {
           resolve({
             worldName: res.data.name,
-            tag: tagData[tag]
+            locationTag: locationTagData[tag]
           })
         } else {
           reject(new Error('World no name'))

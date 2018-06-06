@@ -12,11 +12,10 @@
           <div class="media-body">
             <h5 class="mt-0">{{friend.displayName}}</h5>
             In world : {{friend.worldName}}<br>
-            <span class="badge badge-pill badge-primary" v-if="friend.tag.type=='Public'">{{friend.tag.type}}</span>
-            <span class="badge badge-pill badge-success" v-if="friend.tag.type=='Friends+'">{{friend.tag.type}}</span>
-            <span class="badge badge-pill badge-info" v-if="friend.tag.type=='Friends'">{{friend.tag.type}}</span>
-            <span class="badge badge-pill badge-warning" v-if="friend.tag.type=='Invite'">{{friend.tag.type}}</span>
-            <!-- {{friend.tag ? friend.tag.type : "undefined"}} : {{friend.tag ? friend.tag.description : "undefined"}} -->
+            <span class="badge badge-pill badge-primary" v-if="friend.locationTag.type=='Public'">{{friend.locationTag.type}}</span>
+            <span class="badge badge-pill badge-success" v-if="friend.locationTag.type=='Friends+'">{{friend.locationTag.type}}</span>
+            <span class="badge badge-pill badge-info" v-if="friend.locationTag.type=='Friends'">{{friend.locationTag.type}}</span>
+            <span class="badge badge-pill badge-warning" v-if="friend.locationTag.type=='Invite'">{{friend.locationTag.type}}</span>
           </div>
         </div>
       </li>
