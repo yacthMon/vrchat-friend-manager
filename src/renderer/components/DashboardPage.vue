@@ -8,10 +8,16 @@
             <h2>Profile</h2>
           </span>
           <img :src=this.api.api.currentAvatar.thumbnailUrl style='width:250px; height:200px'> <br><br>
-          <b>Username</b> {{this.api.api.username}}<br>
-          <b>Display Name</b> {{this.api.api.displayName}}<br>
-          <b>Friend total</b> {{this.api.api.friends.length}}<br>
-          <br><br>
+          <dl class="row">
+            <dt class="col-sm-6">Username</dt> 
+            <dd class="col-sm-5">{{this.api.api.username}}</dd>
+
+            <dt class="col-sm-6">Display Name</dt> 
+            <dd class="col-sm-5">{{this.api.api.displayName}}</dd>
+
+            <dt class="col-sm-6">Friend total</dt> 
+            <dd class="col-sm-5">{{this.api.api.friends.length}}</dd>
+          </dl>
           <button type="button" class="btn btn-default btn-danger" aria-label="Left Align" @click="logout()">
             <span class="glyphicon glyphicon-refresh" aria-hidden="true">Logout</span>
           </button>
