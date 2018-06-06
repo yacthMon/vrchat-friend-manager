@@ -9,7 +9,7 @@
 - [ ] Find user
 - [ ] Add/Delete Friend
 - [ ] Accept/Ignore Friend request
-- [ ] Joining friend
+- [x] ~~Joining friend~~
 - [ ] List user's avatar
 - [ ] Choose avatar
 - [ ] Delete avatar
