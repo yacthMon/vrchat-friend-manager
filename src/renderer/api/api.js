@@ -56,18 +56,27 @@ class API {
         }
       }).then(async res => {
         let result = []
-        for (let friend of res.data) {
-          if (friend.location !== 'offline') {
-            this.getWorldNameOfFriend(friend.location).then(worldName => {
-              result.push({
-                displayName: friend.displayName,
-                currentAvatarImageUrl: friend.currentAvatarThumbnailImageUrl,
-                worldName: worldName
+        if (res.data) {
+          for (let friend of res.data) {
+            if (friend.location !== 'offline') {
+              this.getWorldNameOfFriend(friend.location).then(worldName => {
+                result.push({
+                  displayName: friend.displayName,
+                  currentAvatarImageUrl: friend.currentAvatarThumbnailImageUrl,
+                  worldName: worldName
+                })
+                result = result.sort((a, b) => {
+                  if (a.displayName.charAt(0) < b.displayName.charAt(0)) return -1
+                  if (a.displayName.charAt(0) > b.displayName.charAt(0)) return 1
+                  return 0
+                })
               })
-            })
+            }
           }
+          resolve(result)
+        } else {
+          reject(new Error('[getFriend] Something wrong with response data.'))
         }
-        res.data ? resolve(result) : reject(new Error('[getFriend] Something wrong with response data.'))
       }).catch(err => {
         console.error(err.response)
       })
