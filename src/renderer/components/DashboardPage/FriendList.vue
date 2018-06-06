@@ -4,18 +4,32 @@
     <h4>Online Friend <span class="badge badge-secondary">{{this.friends ? this.friends.length : 0 }}</span> 
     <button type="button" class="btn btn-default btn-info" aria-label="Left Align" @click="refreshFriendList()">
       <span class="glyphicon glyphicon-refresh" aria-hidden="true">refresh</span>
-    </button></h4>
+    </button>
+    </h4>
     <transition-group name="list" tag="ul" class="list" >
       <li v-for="(friend,i) in friends" v-bind:key="i">
         <div class="media">
           <img class="mr-3 border border-dark" :src=friend.currentAvatarImageUrl style='width:120px; height:80px'>
-          <div class="media-body">
-            <h5 class="mt-0">{{friend.displayName}}</h5>
-            In world : {{friend.worldName}}<br>
-            <span class="badge badge-pill badge-primary" v-if="friend.locationTag.type=='Public'">{{friend.locationTag.type}}</span>
-            <span class="badge badge-pill badge-success" v-if="friend.locationTag.type=='Friends+'">{{friend.locationTag.type}}</span>
-            <span class="badge badge-pill badge-info" v-if="friend.locationTag.type=='Friends'">{{friend.locationTag.type}}</span>
-            <span class="badge badge-pill badge-warning" v-if="friend.locationTag.type=='Invite'">{{friend.locationTag.type}}</span>
+          <div class="media-body"> 
+            <div class="row" style="margin-left: 0px; margin-right: 0px;">
+              <div>
+                <h5 class="mt-0">{{friend.displayName}}</h5>
+                In world : {{friend.worldName}}<br>
+                <div class="row">
+                  <span class="col align-self-start">
+                    <span class="badge badge-pill badge-primary" v-if="friend.locationTag.type=='Public'">{{friend.locationTag.type}}</span>
+                    <span class="badge badge-pill badge-success" v-if="friend.locationTag.type=='Friends+'">{{friend.locationTag.type}}</span>
+                    <span class="badge badge-pill badge-info" v-if="friend.locationTag.type=='Friends'">{{friend.locationTag.type}}</span>
+                    <span class="badge badge-pill badge-warning" v-if="friend.locationTag.type=='Invite'">{{friend.locationTag.type}}</span>
+                  </span>
+                </div>
+              </div>
+              <span class="col align-self-center text-right">
+                <button type="button" class="btn btn-light" v-if="friend.locationTag.type!='Invite'" @click="open(friend.location)">
+                  Join
+                </button>
+              </span>
+            </div>
           </div>
         </div>
       </li>
@@ -58,6 +72,9 @@ export default {
       this.api.api.getFriend().then(friends => {
         this.friends = friends
       })
+    },
+    open (link) {
+      this.$electron.shell.openExternal(link)
     }
   }
 }
