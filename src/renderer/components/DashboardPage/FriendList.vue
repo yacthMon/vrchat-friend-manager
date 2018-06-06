@@ -73,6 +73,9 @@ export default {
     refreshFriendList () {
       this.api.api.getFriend().then(friends => {
         this.friends = friends
+      }).catch(err => {
+        console.error(err)
+        this.$router.push({name: 'login-page'})
       })
     },
     open (link) {
