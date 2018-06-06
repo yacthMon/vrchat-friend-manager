@@ -57,13 +57,15 @@ class API {
       }).then(async res => {
         let result = []
         for (let friend of res.data) {
-          this.getWorldNameOfFriend(friend.location).then(worldName => {
-            result.push({
-              displayName: friend.displayName,
-              currentAvatarImageUrl: friend.currentAvatarThumbnailImageUrl,
-              worldName: worldName
+          if (friend.location !== 'offline') {
+            this.getWorldNameOfFriend(friend.location).then(worldName => {
+              result.push({
+                displayName: friend.displayName,
+                currentAvatarImageUrl: friend.currentAvatarThumbnailImageUrl,
+                worldName: worldName
+              })
             })
-          })
+          }
         }
         res.data ? resolve(result) : reject(new Error('[getFriend] Something wrong with response data.'))
       }).catch(err => {
