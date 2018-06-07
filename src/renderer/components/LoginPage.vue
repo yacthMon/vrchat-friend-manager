@@ -18,7 +18,11 @@
           <input v-model="username" type="text"><br>
           Password :<br>
           <input v-model="password" type="password"><br>
-          </div><br>
+          </div>
+          <transition name="login-result">
+            <span v-if="loginResult" class='login-result'>{{loginResult}}</span>
+          </transition>
+          <br>
           <button @click="login()">Login</button><br><br>
           
         </div>
@@ -48,12 +52,14 @@ export default {
     return {
       version: pconfig.version,
       username: '',
-      password: ''
+      password: '',
+      loginResult: ''
     }
   },
   components: { SystemInformation },
   methods: {
     login () {
+      this.loginResult = ''
       let api = new API()
       api.login(this.username, this.password).then(
         () => {
@@ -63,9 +69,13 @@ export default {
           this.$router.push({name: 'dashboard-page'})
         }).catch(err => {
         if (err) {
-          console.log(err.stack)
+          console.log(err)
+          if (err.response.status === 401) {
+            this.loginResult = 'Authentication failed'
+          } else {
+            this.loginResult = 'Authentication failed'
+          }
         }
-        this.loginResult = 'Authentication failed.'
       })
     },
     open (link) {
@@ -159,5 +169,18 @@ main > div {
 .doc button.alt {
   color: #42b983;
   background-color: transparent;
+}
+
+.login-result {
+  color:red;
+}
+
+.login-result-enter-active, .login-result-leave-active {
+  transition: all 1s;
+}
+
+.login-result-enter, .login-result-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>
