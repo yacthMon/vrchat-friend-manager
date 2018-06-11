@@ -27,7 +27,7 @@
                 </div>
               </div>
               <span class="col align-self-center text-right">
-                <button type="button" class="btn btn-light" v-if="friend.locationTag.type!='Invite'" @click="open(friend.location)">
+                <button type="button" class="btn btn-light" data-toggle="tooltip" :title=friend.location v-if="friend.locationTag.type!='Invite'" @click="open(friend.location)">
                   Join
                 </button>
               </span>
@@ -36,6 +36,7 @@
         </div>
       </li>
     </transition-group>
+    <b><span>** Joing friend will launch new VRChat window </span></b>
   </div>
 </template>
 
@@ -79,7 +80,7 @@ export default {
       })
     },
     open (link) {
-      this.$electron.shell.openExternal(link)
+      this.$electron.shell.openExternal('vrchat://launch?id=' + link)
     }
   }
 }
