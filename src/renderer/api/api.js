@@ -186,6 +186,24 @@ class API {
       })
     })
   }
+
+  findUsers (search) {
+    return new Promise((resolve, reject) => {
+      axios.get(`${apiPath}/users`, {
+        params: {
+          search: search,
+          apiKey: apiKey,
+          authToken: this.authToken
+        }
+      }).then(res => {
+        if (res.data) {
+          resolve(res.data)
+        } else {
+          reject(new Error('findUsers went wrong.'))
+        }
+      })
+    })
+  }
 }
 
 export default API
