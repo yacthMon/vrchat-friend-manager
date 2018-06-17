@@ -26,9 +26,13 @@
             <li class="nav-item">
               <a class="nav-link active" id="friend-tab" data-toggle="tab" href="#online-friend" role="tab" aria-controls="home" aria-selected="true">Friends</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" id="manage-tab" data-toggle="tab" href="#manage-friend" role="tab" aria-controls="manage">Manage Friend</a>
+            </li>
           </ul>
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="online-friend" role="tabpanel" aria-labelledby="friend-tab"><FriendList :api=api></FriendList></div>
+            <div class="tab-pane fade show" id="manage-friend" role="tabpanel" aria-labelledby="manage-tab"><FriendManager :api=api></FriendManager></div>
           </div>
           
         </div>
@@ -40,6 +44,7 @@
 <script>
   import { mapGetters, mapState, mapActions } from 'vuex'
   import FriendList from './DashboardPage/FriendList'
+  import FriendManager from './DashboardPage/FriendManage'
   export default {
     name: 'dashboard-page',
     data: () => {
@@ -47,7 +52,7 @@
         user: this.api
       }
     },
-    components: { FriendList },
+    components: { FriendList, FriendManager },
     computed: {
       ...mapState({
         api: state => state.User.api
