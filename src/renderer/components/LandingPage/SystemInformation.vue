@@ -3,7 +3,7 @@
       <div style="text-align:center">
         Vue.js {{ vue }} |
         Electron {{ electron }} |
-        Node JS {{ node }} 
+        NodeJS {{ node }} 
       </div>
   </div>
 </template>
