@@ -204,6 +204,28 @@ class API {
       })
     })
   }
+
+  sendFriendRequest (userId) {
+    return new Promise((resolve, reject) => {
+      axios.post(`${apiPath}/user/${userId}/friendRequest`, {
+        params: {
+          apiKey: apiKey,
+          authToken: this.authToken
+        }
+      }).then(res => {
+        if (res.data) {
+          console.log(res.data)
+          resolve(true)
+        } else {
+          reject(new Error('findUsers went wrong.'))
+        }
+      }, err => {
+        if (err) {
+          reject(err)
+        }
+      })
+    })
+  }
 }
 
 export default API
