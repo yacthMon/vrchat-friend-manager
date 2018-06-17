@@ -91,6 +91,37 @@ class API {
     })
   }
 
+  getAllFriend () {
+    return new Promise((resolve, reject) => {
+      axios.get(`${apiPath}/auth/user`, {
+        params: {
+          apiKey,
+          authToken: this.authToken
+        }
+      }).then(async res => {
+        if (res.data) {
+          let result = []
+          for (let friendId of res.data.friends) {
+            this.getFriendInfo(friendId).then((friend) => {
+              result.push(friend)
+              result = result.sort((a, b) => {
+                if (a.displayName.charAt(0) < b.displayName.charAt(0)) return -1
+                if (a.displayName.charAt(0) > b.displayName.charAt(0)) return 1
+                return 0
+              })
+            })
+          }
+          resolve(result)
+        } else {
+          reject(new Error('[getAllFriend] Something wrong with response data.'))
+        }
+      }).catch(err => {
+        console.error(err.response)
+        reject(err)
+      })
+    })
+  }
+
   getLocationDetailOfFriend (location) {
     return new Promise(async (resolve, reject) => {
       let tag = location.substring(location.indexOf('~', 0) + 1, location.indexOf('(', 0))
@@ -112,6 +143,28 @@ class API {
           })
         } else {
           reject(new Error('World no name'))
+        }
+      })
+    })
+  }
+
+  getFriendInfo (friendId) {
+    return new Promise((resolve, reject) => {
+      axios.get(`${apiPath}/users/${friendId}`, {
+        params: {
+          apiKey: apiKey,
+          authToken: this.authToken
+        }
+      }).then(res => {
+        if (res.data) {
+          resolve({
+            id: res.data.id,
+            username: res.data.username,
+            displayName: res.data.displayName,
+            currentAvatarThumbnailImageUrl: res.data.currentAvatarThumbnailImageUrl
+          })
+        } else {
+          reject(new Error('Player not found'))
         }
       })
     })
