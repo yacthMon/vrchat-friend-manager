@@ -14,7 +14,7 @@
                 <h5 class="mt-0">{{friend.displayName}}</h5>
               </div>
               <span class="col align-self-center text-right">
-                <button type="button" class="btn btn-light" data-toggle="tooltip"  @click='console.log(1)'>
+                <button type="button" class="btn btn-light" data-toggle="tooltip"  @click='unfriend(friend.id)'>
                   Delete
                 </button>
               </span>
@@ -47,6 +47,12 @@ export default {
           this.friends = friends
         })
       }
+    },
+    unfriend (friendId) {
+      this.api.api.unfriend(friendId).then(result => {
+        console.log('unfriend succesful')
+        this.friends.splice(this.friends.findIndex(friend => friend.id === friendId), 1)
+      })
     }
   }
 }

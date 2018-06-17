@@ -169,6 +169,23 @@ class API {
       })
     })
   }
+
+  unfriend (friendId) {
+    return new Promise((resolve, reject) => {
+      axios.delete(`${apiPath}/auth/user/friends/${friendId}`, {
+        params: {
+          apiKey: apiKey,
+          authToken: this.authToken
+        }
+      }).then(res => {
+        if (res.data.success) {
+          resolve(true)
+        } else {
+          reject(new Error('These users are not friend'))
+        }
+      })
+    })
+  }
 }
 
 export default API
