@@ -36,7 +36,7 @@
         </div>
       </li>
     </transition-group>
-    <b><span>** Joing friend will launch new VRChat window </span></b>
+    <b><span>** Joining friend will launch new VRChat window </span></b>
   </div>
 </template>
 
