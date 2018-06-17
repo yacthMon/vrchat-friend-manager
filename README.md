@@ -6,8 +6,8 @@
 - [x] ~~View online friend~~
 - [x] ~~View friend location~~
 - [x] ~~View friend location's instance [publice , invite or private]~~
-- [ ] Find user
-- [ ] Add/Delete Friend
+- [x] ~~Find user~~
+- [x] ~~Add/Delete Friend~~
 - [ ] Accept/Ignore Friend request
 - [x] ~~Joining friend~~
 - [ ] List user's avatar
