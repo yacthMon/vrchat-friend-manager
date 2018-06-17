@@ -1,7 +1,7 @@
 <template>
   <div>
     {{getOnlineFriend()}}
-    <h4>Online Friend <span class="badge badge-secondary">{{this.friends ? this.friends.length : 0 }}</span> 
+    <h4 style="margin-top: 10px;">Online Friend <span class="badge badge-secondary">{{this.friends ? this.friends.length : 0 }}</span> 
     <button type="button" class="btn btn-default btn-info" aria-label="Left Align" @click="refreshFriendList()">
       <span class="glyphicon glyphicon-refresh" aria-hidden="true">refresh</span>
     </button>
@@ -124,7 +124,7 @@ export default {
 .list {
   list-style-type: none;
   height: 400px;
-  width: 500px;
+  width: 580px;
   overflow-y: auto;
 }
 /* Enter and leave animations can use different */

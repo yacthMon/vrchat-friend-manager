@@ -1,6 +1,5 @@
 <template>
-  <div id="wrapper" style="padding-right: 0px;">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <div id="wrapper" style="padding-right: 0px; padding-top: 40px;">
     <div class="container">
       <div class="row">
         <div class="col-4">
@@ -23,7 +22,15 @@
           </button>
         </div>
         <div class="col justify-content-end">
-          <FriendList :api=api></FriendList>
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="friend-tab" data-toggle="tab" href="#online-friend" role="tab" aria-controls="home" aria-selected="true">Friends</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="online-friend" role="tabpanel" aria-labelledby="friend-tab"><FriendList :api=api></FriendList></div>
+          </div>
+          
         </div>
       </div>
     </div>
