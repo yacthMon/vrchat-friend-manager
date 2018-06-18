@@ -1,6 +1,10 @@
 <template>
   <div>
     {{getAllFriend()}}
+    
+    <b-modal ref="unfriendConfirmModal" title="Confirm unfriend" ok-title="Sure" @ok="confirmUnfriend" >
+      Are you sure you want to unfriend.
+    </b-modal>
     <h4 style="margin-top: 10px;">
       Friend list
     </h4>
@@ -14,7 +18,7 @@
                 <h5 class="mt-0">{{friend.displayName}}</h5>
               </div>
               <span class="col align-self-center text-right">
-                <button type="button" class="btn btn-light" data-toggle="tooltip"  @click='unfriend(friend.id)'>
+                <button type="button" class="btn btn-danger" @click='showConfirmUnfriend(friend.id)'>
                   Delete
                 </button>
               </span>
@@ -37,7 +41,8 @@ export default {
   },
   data () {
     return {
-      friends: null
+      friends: null,
+      friendIdToUnfriend: null
     }
   },
   methods: {
@@ -53,6 +58,14 @@ export default {
         console.log('unfriend succesful')
         this.friends.splice(this.friends.findIndex(friend => friend.id === friendId), 1)
       })
+    },
+    confirmUnfriend (evt) {
+      this.unfriend(this.friendIdToUnfriend)
+      this.friendIdToUnfriend = null
+    },
+    showConfirmUnfriend (friendId) {
+      this.$refs.unfriendConfirmModal.show()
+      this.friendIdToUnfriend = friendId
     }
   }
 }
