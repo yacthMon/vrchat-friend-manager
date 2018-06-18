@@ -2,7 +2,7 @@
   <div>
     {{getNotification()}}
     <h4 style="margin-top: 10px;">
-      Notification
+      Notification <span class="badge badge-secondary">{{this.notifications ? this.notifications.length : 0 }}</span> 
     <button type="button" class="btn btn-default btn-info" aria-label="Left Align" @click="refreshNotification()">
       <span class="glyphicon glyphicon-refresh" aria-hidden="true">refresh</span>
     </button>
