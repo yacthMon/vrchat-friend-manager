@@ -3,7 +3,11 @@
     {{getNotification()}}
     <h4 style="margin-top: 10px;">
       Notification
+    <button type="button" class="btn btn-default btn-info" aria-label="Left Align" @click="refreshNotification()">
+      <span class="glyphicon glyphicon-refresh" aria-hidden="true">refresh</span>
+    </button>
     </h4>
+    
     <transition-group name="list" tag="ul" class="list" >
       <li v-for="(notification,i) in notifications" v-bind:key="i">
         <div class="media">
@@ -62,6 +66,11 @@ export default {
     },
     deleteNotification (notificationId) {
       this.notifications.splice(this.notifications.findIndex(notification => notification.id === notificationId), 1)
+    },
+    refreshNotification () {
+      this.api.api.getFriendRequestNotifications().then(notifications => {
+        this.notifications = notifications
+      })
     }
   }
 }
