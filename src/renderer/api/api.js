@@ -236,7 +236,17 @@ class API {
         }
       }).then(res => {
         if (res.data) {
-          resolve(res.data)
+          let result = []
+          for (let notification of res.data) {
+            this.getFriendInfo(notification.senderUserId).then(info => {
+              result.push({
+                id: notification.id,
+                created_at: notification.created_at,
+                senderInfo: info
+              })
+            })
+          }
+          resolve(result)
         } else {
           reject(new Error('get notifications went wrong.'))
         }
