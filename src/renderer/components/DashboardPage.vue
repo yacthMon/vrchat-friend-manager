@@ -14,8 +14,6 @@
             <dt class="col-sm-6">Display Name</dt> 
             <dd class="col-sm-5">{{this.api.api.displayName}}</dd>
 
-            <dt class="col-sm-6">Friend total</dt> 
-            <dd class="col-sm-5">{{this.api.api.friends.length}}</dd>
           </dl>
           <button type="button" class="btn btn-default btn-danger" aria-label="Left Align" @click="logout()">
             <span class="glyphicon glyphicon-refresh" aria-hidden="true">Logout</span>

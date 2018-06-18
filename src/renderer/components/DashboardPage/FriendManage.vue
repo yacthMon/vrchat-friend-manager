@@ -6,7 +6,7 @@
       Are you sure you want to unfriend.
     </b-modal>
     <h4 style="margin-top: 10px;">
-      Friend list
+      Friend list <span class="badge badge-secondary">{{this.friends ? this.friends.length : 0 }}</span> 
     <button type="button" class="btn btn-default btn-info" aria-label="Left Align" @click="refreshFriendList()">
       <span class="glyphicon glyphicon-refresh" aria-hidden="true">refresh</span>
     </button>
