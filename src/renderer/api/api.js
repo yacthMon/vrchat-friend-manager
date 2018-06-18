@@ -257,6 +257,28 @@ class API {
       })
     })
   }
+
+  acceptFriendRequest (notificationId) {
+    return new Promise((resolve, reject) => {
+      axios.put(`${apiPath}/auth/user/notifications/${notificationId}/accept`, {
+        params: {
+          apiKey: apiKey,
+          authToken: this.authToken
+        }
+      }).then(res => {
+        console.log(res)
+        if (res.data) {
+          resolve()
+        } else {
+          reject(new Error('AcceptFriendRequest went wrong.'))
+        }
+      }, err => {
+        if (err) {
+          reject(err)
+        }
+      })
+    })
+  }
 }
 
 export default API
