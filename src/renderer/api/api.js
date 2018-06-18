@@ -266,11 +266,31 @@ class API {
           authToken: this.authToken
         }
       }).then(res => {
-        console.log(res)
         if (res.data) {
           resolve()
         } else {
           reject(new Error('AcceptFriendRequest went wrong.'))
+        }
+      }, err => {
+        if (err) {
+          reject(err)
+        }
+      })
+    })
+  }
+
+  ignoreFriendRequest (notificationId) {
+    return new Promise((resolve, reject) => {
+      axios.put(`${apiPath}/auth/user/notifications/${notificationId}/hide`, {
+        params: {
+          apiKey: apiKey,
+          authToken: this.authToken
+        }
+      }).then(res => {
+        if (res.data) {
+          resolve()
+        } else {
+          reject(new Error('IgnoreFriendRequest went wrong.'))
         }
       }, err => {
         if (err) {
