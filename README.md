@@ -2,6 +2,7 @@
 ![alt text](https://img.shields.io/badge/Version-0.1.0-brightgreen.svg "version 0.1.0")
 
 Desktop application for manage friend in VRChat game by [VRChat API](https://vrchatapi.github.io/#/)
+
 [Download link](https://goo.gl/nbvB6L)
 
 ### Todo
