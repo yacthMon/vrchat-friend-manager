@@ -214,10 +214,31 @@ class API {
         }
       }).then(res => {
         if (res.data) {
-          console.log(res.data)
           resolve(true)
         } else {
           reject(new Error('findUsers went wrong.'))
+        }
+      }, err => {
+        if (err) {
+          reject(err)
+        }
+      })
+    })
+  }
+
+  getFriendRequestNotifications () {
+    return new Promise((resolve, reject) => {
+      axios.get(`${apiPath}/auth/user/notifications`, {
+        params: {
+          apiKey: apiKey,
+          authToken: this.authToken,
+          type: 'friendRequest'
+        }
+      }).then(res => {
+        if (res.data) {
+          resolve(res.data)
+        } else {
+          reject(new Error('get notifications went wrong.'))
         }
       }, err => {
         if (err) {
