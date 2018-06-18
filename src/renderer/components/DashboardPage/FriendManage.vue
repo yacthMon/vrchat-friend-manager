@@ -1,18 +1,25 @@
 <template>
   <div>
     {{getAllFriend()}}
-    
     <b-modal ref="unfriendConfirmModal" title="Confirm unfriend" ok-title="Sure" @ok="confirmUnfriend" >
       Are you sure you want to unfriend.
     </b-modal>
-    <h4 style="margin-top: 10px;">
-      Friend list <span class="badge badge-secondary">{{this.friends ? this.friends.length : 0 }}</span> 
-    <button type="button" class="btn btn-default btn-info" aria-label="Left Align" @click="refreshFriendList()">
-      <span class="glyphicon glyphicon-refresh" aria-hidden="true">refresh</span>
-    </button>
-    </h4>
+    <div class="form-group row">
+      <div class="col-sm-5">
+        <h4 style="margin-top: 10px;">
+          Friend list <span class="badge badge-secondary">{{this.friends ? this.friends.length : 0 }}</span>
+        <button type="button" class="btn btn-default btn-info" aria-label="Left Align" @click="refreshFriendList()">
+          <span class="glyphicon glyphicon-refresh" aria-hidden="true">refresh</span>
+        </button>
+        </h4>
+      </div>
+      <div class="col-sm-7" style="margin-top: 10px;">
+        <input v-model="search" class="form-control" type="text" placeholder="Search">
+      </div>
+      
+    </div>
     <transition-group name="list" tag="ul" class="list" >
-      <li v-for="(friend,i) in friends" v-bind:key="i">
+      <li v-for="(friend,i) in filteredFriend" v-bind:key="i">
         <div class="media">
           <img class="mr-3 border border-dark" :src=friend.currentAvatarThumbnailImageUrl style='width:120px; height:80px'>
           <div class="media-body"> 
@@ -45,7 +52,15 @@ export default {
   data () {
     return {
       friends: null,
+      search: '',
       friendIdToUnfriend: null
+    }
+  },
+  computed: {
+    filteredFriend () {
+      return this.friends.filter(friend => {
+        return friend.displayName.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+      })
     }
   },
   methods: {
