@@ -7,6 +7,9 @@
     </b-modal>
     <h4 style="margin-top: 10px;">
       Friend list
+    <button type="button" class="btn btn-default btn-info" aria-label="Left Align" @click="refreshFriendList()">
+      <span class="glyphicon glyphicon-refresh" aria-hidden="true">refresh</span>
+    </button>
     </h4>
     <transition-group name="list" tag="ul" class="list" >
       <li v-for="(friend,i) in friends" v-bind:key="i">
@@ -66,6 +69,11 @@ export default {
     showConfirmUnfriend (friendId) {
       this.$refs.unfriendConfirmModal.show()
       this.friendIdToUnfriend = friendId
+    },
+    refreshFriendList () {
+      this.api.api.getAllFriend().then(friends => {
+        this.friends = friends
+      })
     }
   }
 }
