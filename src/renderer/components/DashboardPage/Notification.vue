@@ -23,7 +23,7 @@
                   <b-button variant="success" @click="acceptFriendRequest(notification.id)">
                     Accept
                   </b-button>
-                  <b-button variant="warning">
+                  <b-button variant="warning" @click="ignoreFriendRequest(notification.id)">
                     Ignore
                   </b-button>
                 </b-button-group>
@@ -61,7 +61,13 @@ export default {
     acceptFriendRequest (notificationId) {
       this.api.api.acceptFriendRequest(notificationId).then(result => {
         this.deleteNotification(notificationId)
-        console.log('Accept friend success')
+        console.log('Accept friend request success')
+      })
+    },
+    ignoreFriendRequest (notificationId) {
+      this.api.api.ignoreFriendRequest(notificationId).then(result => {
+        this.deleteNotification(notificationId)
+        console.log('ignore friend request success')
       })
     },
     deleteNotification (notificationId) {
