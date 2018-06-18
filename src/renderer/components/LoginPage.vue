@@ -1,33 +1,35 @@
 <template>
   <div id="wrapper">
     <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
-    <main>
-      <div class="left-side">
-        <span class="title">
-          Welcome to <br><br>
-          <h2>VRChat</h2>
-          <h3>Friend Manager</h3>
-          v{{version}}
-        </span>
-      </div>
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-4">
+          <span class="title">
+            Welcome to <br><br>
+            <h2>VRChat</h2>
+            <h3>Friend Manager</h3>
+            v{{version}}
+          </span>
+        </div>
 
-      <div class="right-side">
-        <div class="doc">
-          <div class="title">Login</div>
-          <div>Username/Email<br>
-          <input v-model="username" type="text"><br>
-          Password :<br>
-          <input v-model="password" type="password"><br>
+        <div class="col-4 ">
+          <div class="doc">
+            <div class="title">Login</div>
+            <div>Username/Email<br>
+            <input v-model="username" type="text"><br>
+            Password :<br>
+            <input v-model="password" type="password"><br>
+            </div>
+            <transition name="login-result">
+              <span v-if="loginResult" class='login-result'>{{loginResult}}</span>
+            </transition>
+            <br>
+            <button @click="login()">Login</button><br><br>
+            
           </div>
-          <transition name="login-result">
-            <span v-if="loginResult" class='login-result'>{{loginResult}}</span>
-          </transition>
-          <br>
-          <button @click="login()">Login</button><br><br>
-          
         </div>
       </div>
-    </main>
+    </div>
     <div style="text-align:center;right:0;left: 0; bottom: 0;position: absolute;">
       <system-information></system-information>
       <div>Author : <span  @click="open('https://github.com/yacthMon')">yacth_Mon @GitHub</span></div>

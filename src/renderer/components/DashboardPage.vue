@@ -1,8 +1,8 @@
 <template>
-  <div id="wrapper" style="padding-right: 0px; padding-top: 40px;">
+  <div id="wrapper" style="padding-right: 0px; padding-top: 0px;">
     <div class="container">
       <div class="row">
-        <div class="col-4">
+        <div class="col-4" style="padding-top: 40px;">
           <span class="title">
             <h2>Profile</h2>
           </span>
