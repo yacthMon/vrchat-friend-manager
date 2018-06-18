@@ -8,7 +8,7 @@
 - [x] ~~View friend location's instance [publice , invite or private]~~
 - [x] ~~Find user~~
 - [x] ~~Add/Delete Friend~~
-- [ ] Accept/Ignore Friend request
+- [x] ~~Accept/Ignore Friend request~~
 - [x] ~~Joining friend~~
 - [ ] List user's avatar
 - [ ] Choose avatar
