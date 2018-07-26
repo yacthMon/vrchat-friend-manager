@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "author": "yacth_Mon <wasawat.lertj@gmail.com>",
   "description": "An electron-vue project",
-  "license": null,
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
