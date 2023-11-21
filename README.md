@@ -4,6 +4,7 @@ VRChat official website is seem to be fully functions than before. And I'm no lo
 # VRChat Friend Manager
 ![alt text](https://img.shields.io/badge/Version-0.1.0-brightgreen.svg "version 0.1.0")
 [![deprecated](http://badges.github.io/stability-badges/dist/deprecated.svg)](http://github.com/badges/stability-badges)
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 Desktop application for manage friend in VRChat game by [VRChat API](https://vrchatapi.github.io/#/)
 
